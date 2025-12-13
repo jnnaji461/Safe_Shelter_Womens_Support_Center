@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Safe Shelter Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 20px; background: #f5f5f5; }
+        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 10px; }
+        .stats { display: flex; gap: 20px; margin: 30px 0; }
+        .stat-box { background: white; padding: 20px; border-radius: 10px; flex: 1; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #2c3e50; color: white; }
+        .nav { margin: 20px 0; }
+        .nav a { margin-right: 20px; text-decoration: none; color: #2c3e50; font-weight: bold; padding: 10px; }
+        .nav a:hover { background: #e9ecef; border-radius: 5px; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏠 Safe Shelter Women's Support Center</h1>
+        <p>Management System Dashboard</p>
+    </div>
+    
+    <div class="nav">
+        <a href="/">Dashboard</a>
+        <a href="/residents">Residents</a>
+        <a href="/services">Services</a>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-box">
+            <h3>Total Residents</h3>
+            <h2 style="color: #2c3e50;">{{ total_residents }}</h2>
+        </div>
+        <div class="stat-box">
+            <h3>Total Services</h3>
+            <h2 style="color: #27ae60;">{{ total_services }}</h2>
+        </div>
+    </div>
+    
+    <h2>Recent Residents</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Entry Date</th>
+        </tr>
+        {% for resident in recent_residents %}
+        <tr>
+            <td>{{ resident[1] }} {{ resident[2] }}</td>
+            <td>{{ resident[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Recent Services</h2>
+    <table>
+        <tr>
+            <th>Resident</th>
+            <th>Service</th>
+            <th>Date</th>
+        </tr>
+        {% for service in recent_services %}
+        <tr>
+            <td>{{ service[1] }} {{ service[2] }}</td>
+            <td>{{ service[3] }}</td>
+            <td>{{ service[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

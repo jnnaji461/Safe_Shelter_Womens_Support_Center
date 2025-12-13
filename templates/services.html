@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Services - Safe Shelter</title>
+    <style>
+        body { font-family: Arial; margin: 20px; background: #f5f5f5; }
+        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #2c3e50; color: white; }
+        .nav { margin: 20px 0; }
+        .nav a { margin-right: 20px; text-decoration: none; color: #2c3e50; font-weight: bold; padding: 10px; }
+        .nav a:hover { background: #e9ecef; border-radius: 5px; }
+        .add-form { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        select, input { padding: 10px; margin: 10px 10px 10px 0; width: 200px; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #2980b9; }
+        h2 { color: #2c3e50; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📋 Service Tracking</h1>
+    </div>
+    
+    <div class="nav">
+        <a href="/">Dashboard</a>
+        <a href="/residents">Residents</a>
+        <a href="/services">Services</a>
+    </div>
+    
+    <div class="add-form">
+        <h3>Log New Service</h3>
+        <form action="/log_service" method="POST">
+            <select name="resident_id" required>
+                <option value="">Select Resident</option>
+                {% for resident in residents %}
+                <option value="{{ resident[0] }}">
+                    {{ resident[1] }} {{ resident[2] }}
+                </option>
+                {% endfor %}
+            </select>
+            <input type="text" name="service_type" placeholder="Service Type (e.g., Counseling)" required>
+            <button type="submit">Log Service</button>
+        </form>
+    </div>
+    
+    <h2>All Services</h2>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Resident</th>
+            <th>Service Type</th>
+        </tr>
+        {% for service in services %}
+        <tr>
+            <td>{{ service[4] }}</td>
+            <td>{{ service[1] }} {{ service[2] }}</td>
+            <td>{{ service[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

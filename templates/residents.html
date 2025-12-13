@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Residents - Safe Shelter</title>
+    <style>
+        body { font-family: Arial; margin: 20px; background: #f5f5f5; }
+        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #2c3e50; color: white; }
+        .nav { margin: 20px 0; }
+        .nav a { margin-right: 20px; text-decoration: none; color: #2c3e50; font-weight: bold; padding: 10px; }
+        .nav a:hover { background: #e9ecef; border-radius: 5px; }
+        .add-form { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        input { padding: 10px; margin: 10px 10px 10px 0; width: 200px; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 10px 20px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #219653; }
+        h2 { color: #2c3e50; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>👥 Resident Management</h1>
+    </div>
+    
+    <div class="nav">
+        <a href="/">Dashboard</a>
+        <a href="/residents">Residents</a>
+        <a href="/services">Services</a>
+    </div>
+    
+    <div class="add-form">
+        <h3>Add New Resident</h3>
+        <form action="/add_resident" method="POST">
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+            <button type="submit">Add Resident</button>
+        </form>
+    </div>
+    
+    <h2>All Residents</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Entry Date</th>
+        </tr>
+        {% for resident in residents %}
+        <tr>
+            <td>{{ resident[0] }}</td>
+            <td>{{ resident[1] }}</td>
+            <td>{{ resident[2] }}</td>
+            <td>{{ resident[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
